@@ -52,6 +52,10 @@ hr {
     margin: 15px;
     justify-content: center;
     align-items: center;
+    text-align: end;
+    padding-right: 5px;
+    padding-top: 5px;
+    font-size: 25px;
     box-shadow: 3px 2px 3px rgb(33, 31, 31) inset;
     background-color: rgb(152, 182, 172);
 }
