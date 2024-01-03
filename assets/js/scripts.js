@@ -30,9 +30,13 @@ for(var a = 0; a < numbers.length; a++){
 
 function writeScreen(value) {
     if ((screen.textContent === '0') && (value != decimal.textContent)) {
-        clear();
+        screen.textContent = ' ';
     }
-    if ((operator === null) && !(isNaN(value))) {
+    if ((operator === null) && (!(isNaN(value)))) {
+        n1 = n1 + value
+        screen.textContent = screen.textContent + value;
+    }
+    else if ((operator === null) && (value === decimal.textContent) ) {
         n1 = n1 + value
         screen.textContent = screen.textContent + value;
     }
@@ -41,6 +45,13 @@ function writeScreen(value) {
         screen.textContent = screen.textContent + value;
     }
     else if ((operator != null) && !(isNaN(value))) {
+        if (n2 === null) {
+            n2 = 0;
+        }
+        n2 = n2 + value
+        screen.textContent = screen.textContent + value;
+    }
+    else if ((operator != null) && (value === decimal.textContent)) {
         if (n2 === null) {
             n2 = 0;
         }
