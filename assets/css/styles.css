@@ -38,7 +38,7 @@ hr {
 .calculator-container {
     margin-top: 30px;
     width: 400px;
-    height: 400px;
+    height: 448.75px;
     border-radius: 20px;
     border: 1.5px solid black;
     background-color: rgb(78, 73, 73);
@@ -64,6 +64,20 @@ hr {
     margin: 15px;
     height: 75px;
     background-color: transparent;
+}
+
+.button-reset {
+    border-radius: 30px;
+    width: 38.75px;
+    height: 38.75px;
+    margin: 5px;
+    border: 0.5px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 1px 3px rgb(33, 31, 31);
+    cursor: pointer;
+    background-color: rgb(64, 200, 64);
 }
 
 .row {

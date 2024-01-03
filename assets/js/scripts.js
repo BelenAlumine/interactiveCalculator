@@ -7,6 +7,10 @@ let div = document.getElementById('div');
 let sum = document.getElementById('sum');
 let subt = document.getElementById('subt');
 let decimal = document.getElementById('decimal');
+let reset = document.getElementById('reset');
+let n1 = 0;
+let operator = null;
+let n2 = null;
 
 equal.addEventListener('click', () => calculate());
 
@@ -16,6 +20,8 @@ sum.addEventListener('click', () => writeScreen(sum.textContent));
 subt.addEventListener('click', () => writeScreen(subt.textContent));
 decimal.addEventListener('click', () => writeScreen(decimal.textContent));
 
+reset.addEventListener('click', () => clear());
+
 for(var a = 0; a < numbers.length; a++){
    numbers[a].addEventListener('click', function(){
       writeScreen(this.textContent)
@@ -24,18 +30,46 @@ for(var a = 0; a < numbers.length; a++){
 
 function writeScreen(value) {
     if ((screen.textContent === '0') && (value != decimal.textContent)) {
-        reset();
+        clear();
     }
-    screen.textContent = screen.textContent + value;
+    if ((operator === null) && !(isNaN(value))) {
+        n1 = n1 + value
+        screen.textContent = screen.textContent + value;
+    }
+    else if ((operator === null) && isNaN(value)) {
+        operator = value;
+        screen.textContent = screen.textContent + value;
+    }
+    else if ((operator != null) && !(isNaN(value))) {
+        if (n2 === null) {
+            n2 = 0;
+        }
+        n2 = n2 + value
+        screen.textContent = screen.textContent + value;
+    }
 }
 
 function calculate() {
    var res = 0;
 
-   reset();
+   if (operator === '+') {
+    res = parseFloat(n1) + parseFloat(n2);
+   }
+   else if (operator === '-') {
+    res = parseFloat(n1) - parseFloat(n2);
+   }
+   if (operator === '*') {
+    res = parseFloat(n1) * parseFloat(n2);
+   }
+   else if (operator === '/') {
+    res = parseFloat(n1) / parseFloat(n2);
+   }
    screen.textContent = res;
 }
 
-function reset() {
-   screen.textContent = ' ';
+function clear() {
+    n1 = 0;
+    operator = null;
+    n2 = null;
+   screen.textContent = '0';
 }
