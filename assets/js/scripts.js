@@ -7,9 +7,9 @@ const sum = document.getElementById('sum');
 const subt = document.getElementById('subt');
 const decimal = document.getElementById('decimal');
 const reset = document.getElementById('reset');
-let n1 = 0;
-let operator = null;
-let n2 = null;
+let n1 = ' ';
+let operator = ' ';
+let n2 = ' ';
 
 equal.addEventListener('click', () => calculate());
 
@@ -30,36 +30,30 @@ for(let a = 0; a < numbers.length; a++){
 function writeScreen(value) {
 
     //FIRST NUMBER
-    if ((operator === null) && (!(isNaN(value)))) {
+    if ((operator === ' ') && (!(isNaN(value)))) {
         n1 = n1 + value
         screen.textContent = screen.textContent + value;
     }
-    else if ((operator === null) && (value === decimal.textContent) ) {
+    else if ((operator === ' ') && (value === decimal.textContent) ) {
         n1 = n1 + value
         screen.textContent = screen.textContent + value;
     }
     //FIRST OPERATOR
-    else if ((operator === null) && isNaN(value)) {
+    else if ((operator === ' ') && isNaN(value)) {
         operator = value;
         screen.textContent = screen.textContent + value;
     }
     //SECOND NUMBER
-    else if ((operator != null) && !(isNaN(value))) {
-        if (n2 === null) {
-            n2 = 0;
-        }
+    else if ((operator != ' ') && !(isNaN(value))) {
         n2 = n2 + value
         screen.textContent = screen.textContent + value;
     }
-    else if ((operator != null) && (value === decimal.textContent)) {
-        if (n2 === null) {
-            n2 = 0;
-        }
+    else if ((operator != ' ') && (value === decimal.textContent)) {
         n2 = n2 + value
         screen.textContent = screen.textContent + value;
     }
     //SECOND OPERATOR
-    else if ((operator != null) && n2 != null) {
+    else if ((operator != ' ') && n2 != ' ') {
         calculate()
         operator = value;
         screen.textContent = screen.textContent + value;
@@ -68,29 +62,39 @@ function writeScreen(value) {
 }
 
 function calculate() {
-   if (operator === '+') {
-    n1 = parseFloat(n1) + parseFloat(n2);
-   }
-   else if (operator === '-') {
-    n1 = parseFloat(n1) - parseFloat(n2);
-   }
-   else if (operator === '*') {
-    n1 = parseFloat(n1) * parseFloat(n2);
-   }
-   else if (operator === '/') {
-    n1 = parseFloat(n1) / parseFloat(n2);
-   }
-   else {
-    n1 = 'math ERROR';
-   }
-   
-   n2 = null;
-   screen.textContent = n1;
+
+    switch(operator){
+        case "+":
+            n1 = parseFloat(n1) + parseFloat(n2);
+            n2 = ' ';
+            operator = ' ';
+            screen.textContent = n1;
+          break;
+        case "-":
+            n1 = parseFloat(n1) - parseFloat(n2);
+            n2 = ' ';
+            operator = ' ';
+            screen.textContent = n1;
+            break;
+        case "*":
+            n1 = parseFloat(n1) * parseFloat(n2);
+            n2 = ' ';
+            operator = ' ';
+            screen.textContent = n1;
+          break;
+        case "/":
+            n1 = parseFloat(n1) / parseFloat(n2);
+            n2 = ' ';
+            operator = ' ';
+            screen.textContent = n1;
+          break;
+      }
 }
 
+
 function clear() {
-    n1 = 0;
-    operator = null;
-    n2 = null;
-   screen.textContent = '0';
+    n1 = ' ';
+    operator = ' ';
+    n2 = ' ';
+   screen.textContent = ' ';
 }
